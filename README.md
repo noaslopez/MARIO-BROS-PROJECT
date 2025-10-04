@@ -1,5 +1,6 @@
 # MARIO-BROS-PROJECT
-This repository corresponds to the Final Project made to finish the subject Programming part of the first semester of the first year of teh degree Computer Science and Engineering at UC3M. 
+This repository corresponds to the Final Project made to finish the subject Programming part of the first semester of the first year of the degree Computer Science and Engineering at UC3M. 
+Important note: This project was made in December 2023
 
 ## Main Purpose of the project
 The main purpose of the proect is to replicate and simulate the famous videogame Mario Bros in order to acquire essential knowledge on the concepts of Object Oriented programming and python language. 
