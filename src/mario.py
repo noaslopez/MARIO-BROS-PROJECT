@@ -1,4 +1,4 @@
-#This class is the one that manages the main character of the game
+""" This module contains the Mario class """
 
 class Mario :
     def __init__(self, x, y):
@@ -24,6 +24,7 @@ class Mario :
     @property
     def x (self) -> float:
         return self.__x
+    
     @x.setter
     def x (self, x) -> float:
         if type(x) != int and type(x) != float:
@@ -53,6 +54,7 @@ class Mario :
     @property
     def jump (self) -> bool:
         return self.__jump
+    
     @jump.setter
     def jump (self, jump) -> bool:
         if type (jump) != bool:
@@ -85,6 +87,7 @@ class Mario :
     @property
     def direction (self) -> str:
         return self.__direction
+    
     @direction.setter
     def direction (self, direction) -> str:
         if type (direction) != str:
@@ -93,9 +96,11 @@ class Mario :
             raise ValueError
         else:
             self.__direction = direction
+            
     @property
     def lifes (self) -> int:
         return self.__lifes
+    
     @lifes.setter
     def lifes (self, lifes) -> int:
         if type(lifes) != int:
@@ -104,18 +109,22 @@ class Mario :
             raise ValueError
         else:
             self.__lifes = lifes
+            
     @property
     def killed (self) -> bool:
         return self.__killed
+    
     @killed.setter
     def killed (self, killed) -> bool:
         if type (killed) != bool:
             raise TypeError
         else:
             self.__killed = killed
+            
     @property
     def points (self) -> int:
         return self.__points
+    
     @points.setter
     def points (self, points):
         if type(points) != int:
@@ -124,6 +133,7 @@ class Mario :
             raise ValueError
         else:
             self.__points = points
+            
     def __str__(self):
         return "Mario"
     def __repr__(self):
@@ -133,7 +143,7 @@ class Mario :
                 self.points == other.points, self.lifes == other.lifes)
 
     def change_sprite (self):
-        # This changes the sprite to make it look as if mario was walking
+        """ Manage sprite change according to movement """
         if self.sprite == (0, 0, 0, 16, 24, 0):
             self.sprite = (0, 16, 0, 16, 24, 0)
         elif self.sprite == (0, 16, 0, 16, 24, 0):
@@ -142,7 +152,9 @@ class Mario :
                 self.sprite = (0, 16, 0, -16, 24, 0)
         elif self.sprite == (0, 16, 0, -16, 24, 0):
                 self.sprite = (0, 0, 0, 16, -24, 0)
+                
     def move(self):
+        """ Manage the movement to the left and right of Mario """
         if self.direction == "right":
             self.x += self.speed_x
             self.sprite = (0, 0, 0, 16, 24, 0)
@@ -152,11 +164,11 @@ class Mario :
         self.change_sprite()
 
     def jumping(self):
-        # this addition represents the force of gravity
+        """ Manage jumping logic """
+        # Gravity speed
         self.speed_y += 1
-        # The position y varies according to the value of the speed
         self.y += self.speed_y
-        # i also add displacement on the horizontally
+        # Horizontal movement during jump
         if self.direction == "left":
             self.sprite = (0, 64, 0, -16, 24, 0)
             self.x -= self.speed_x

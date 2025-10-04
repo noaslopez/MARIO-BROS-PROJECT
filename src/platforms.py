@@ -1,6 +1,4 @@
-#This is the class that contains the platforms in which Mario and the enemies walk
-#We have separated it from the class of the pipes because they are involved in collisions and more
-#For us to control better once we have the collisions, each long platform will be made by small squared platforms
+""" This module contains the Platform class """
 
 class Platform:
     def __init__(self, x, y):

@@ -1,5 +1,4 @@
-#This is the class of the crab
-#Crabs are fliped by being hit twice
+""" This module contains the Crab Enemy class """
 import random
 
 class Crab:
@@ -16,9 +15,9 @@ class Crab:
         self.speed_x = speed_x
         speed_y = 0
         self.speed_y = speed_y
-        # This is an attribute that controls if the fly is touching the platform
+        # Control touch with platform
         self.landed = False
-        # This other attribute controls that the enemy has been killed
+        # Killed attribute
         self.turned = False
         self.time_turned = 0
 

@@ -1,5 +1,4 @@
-#This is the class of teh turtle enemies
-#Turtle enemies are flipped when they are hit once
+""" This module contains the Turtles Enemies class """
 import random
 
 class Turtles:
@@ -17,11 +16,8 @@ class Turtles:
         self.speed_x = speed_x
         speed_y = 0
         self.speed_y = speed_y
-        # This is an attribute that controls if the turtle is touching the platform
         self.landed = False
-        # This other attribute controls that the enemy has been killed
         self.turned = False
-        #This will be a timer to control the amount of time the enemy has been turned for
         self.time_turned = 0
 
     @property
@@ -79,6 +75,7 @@ class Turtles:
     @property
     def direction (self) -> str:
         return self.__direction
+    
     @direction.setter
     def direction (self, direction) -> str:
         if type (direction) != str:
@@ -91,24 +88,29 @@ class Turtles:
     @property
     def landed (self) -> bool:
         return self.__landed
+    
     @landed.setter
     def landed (self, landed) -> bool:
         if type(landed) != bool:
             raise TypeError
         else:
             self.__landed = landed
+            
     @property
     def turned (self) -> bool:
         return self.__turned
+    
     @turned.setter
     def turned (self, turned) -> bool:
         if type (turned) != bool:
             raise TypeError
         else:
             self.__turned = turned
+            
     @property
     def time_turned (self) -> int:
         return self.__time_turned
+    
     @time_turned.setter
     def time_turned (self, time_turned) -> int:
         if type(time_turned) != int:
@@ -125,10 +127,9 @@ class Turtles:
 
 
 
-    #METHODS:
     def move(self):
+        """ Manage the movement """
         if self.turned == False:
-            # If the enemy moves to the left, then we substract the value of the speed
             if self.direction == "left":
                 self.x -= self.speed_x
                 if self.sprite == (0, 16, 128, -16, 16, 0):
@@ -136,7 +137,6 @@ class Turtles:
                 elif self.sprite == (0, 0, 24, -16, 16, 0):
                     self.sprite = (0, 0, 24, 16, 16, 0)
 
-            # If the enemy moves to the right, then we add the value of the speed
             elif self.direction == "right":
                 self.x += self.speed_x
                 if self.sprite == (0, 16, 128, 16, 16, 0):
@@ -145,11 +145,12 @@ class Turtles:
                     self.sprite = (0, 0, 24, -16, 16, 0)
 
     def gravity(self):
-        # This is the acceleration due to the force of gravity
+        """ Manage the gravity effects """
         self.speed_y += 1
-        # This is what varies the value of the position y
         self.y += self.speed_y
+        
     def turn_sprite (self):
+        """ Change the sprite of the turtle when it collides with another enemy """
         self.turned = True
         if self.sprite == (0, 16, 128, 16, 16, 0) or self.sprite == (0, 16, 128, -16, 16, 0):
             self.sprite = (0, 112, 128, 16, 16, 0)
@@ -158,6 +159,7 @@ class Turtles:
         self.speed_x = 0
 
     def back_to_life (self):
+        """ Manage getting back to life after being turned """
         if self.time_turned > 90:
             if self.direction == "left":
                 self.sprite = (0, 16, 128, 16, 16, 0)
@@ -166,7 +168,9 @@ class Turtles:
             self.speed_x = 2
             self.turned = False
             self.time_turned = 0
+            
     def killed (self):
+        """ Manage death of the turtle """
         if self.sprite == (0, 16, 128, 16, 16, 0) or self.sprite == (0, 16, 128, -16, 16, 0):
             self.sprite = (0, 160, 128, 8, 8, 0)
         elif self.sprite == (0, 0, 24, 16, 16, 0) or self.sprite == (0, 0, 24, -16, 16, 0):

@@ -1,4 +1,4 @@
-#This is the class that corresponds to the floor of the game
+""" This module contains the Floor Platform class """
 
 class Floor:
     def __init__(self, x, y):

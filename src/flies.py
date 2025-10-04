@@ -1,5 +1,4 @@
-#This is the class of the flies
-#Flies move by jumping so to be flipped they have to be touching the platform
+""" This module contains the Flies Enemy class """
 import random
 
 
@@ -17,12 +16,12 @@ class Flies:
         self.y = y
         speed_x = 2
         self.speed_x = speed_x
-        #I add a negative speed so that the fly jumps upwards
+        # Upward jump movement
         speed_y = -5
         self.speed_y = speed_y
-        #This is an attribute that controls if the fly is touching the platform
+        # Control touch with platform
         self.landed = False
-        #This other attribute controls that the enemy has been killed
+        # Killed attribute
         self.jumping = True
 
     @property
@@ -173,26 +172,27 @@ class Flies:
 
 
     def move (self):
+        """ Manage the movement of the fly """
         if self.landed == True:
             self.jumping = True
 
-        # If the enemy moves to the left, then we substract the value of the speed
+        # Manage left movement
         if self.direction == "left":
             self.x -= self.speed_x
             self.sprite = (0, 16, 56, 16, 16, 0)
-        # If the enemy moves to the right, then we add the value of the speed
+        # Manage right movement
         elif self.direction == "right":
             self.x += self.speed_x
             self.sprite = (0, 16, 56, -16, 16, 0)
 
     def gravity (self):
+        """ Manage the gravity effect on the fly """
         if self.landed == False:
-            # This is the acceleration due to the force of gravity
             self.speed_y += 1
-            # This is what varies the value of the position y
             self.y += self.speed_y
 
     def back_to_life (self):
+        """ Manage the fly coming back to life after being flipped """
         if self.time_turned > 80:
             self.sprite = (0, 120, 144, 16, 16, 0)
             self.speed_x = 2
